@@ -75,6 +75,8 @@
     <color name="RosyBrown">#BC8F8F</color>
     <color name="MediumOrchid">#BA55D3</color>
     <color name="DarkGoldenrod">#B8860B</color>
+    <color name="Denim">#1f2e45</color>
+    <color name="LightDenim">#3f4f68</color>
     <color name="FireBrick">#B22222</color>
     <color name="PowderBlue">#B0E0E6</color>
     <color name="LightSteelBlue">#B0C4DE</color>
@@ -102,6 +104,8 @@
     <color name="Purple">#800080</color>
     <color name="Maroon">#800000</color>
     <color name="Aquamarine">#7FFFD4</color>
+    <color name="AquaBlue">#3fbdaf</color>
+    <color name="AquaSky">#00b4cf</color>
     <color name="Chartreuse">#7FFF00</color>
     <color name="LawnGreen">#7CFC00</color>
     <color name="MediumSlateBlue">#7B68EE</color>
@@ -145,5 +149,6 @@
     <color name="Navy">#000080</color>
     <color name="Black">#000000</color>
     <color name="BlackTransparent">#BC000000</color>
+    <color name="Transparent">#00000000</color>
 
 </resources>
