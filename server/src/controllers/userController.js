@@ -9,13 +9,13 @@ exports.index = (req, res) => {
                 msg: 'could not retrieve users'
             }, 500));
         } else {
-            res.status(500).json(responseMaker({
+            res.status(200).json(responseMaker({
                 msg: 'success',
                 users: [...users]
             }));
         }
     });
-}
+};
 
 exports.new = async (req, res) => {
     var user = new User();
