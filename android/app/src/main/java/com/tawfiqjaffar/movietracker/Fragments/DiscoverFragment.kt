@@ -45,8 +45,11 @@ class DiscoverFragment : Fragment() {
         return view
     }
 
+
     override fun onResume() {
         super.onResume()
+        getMovies()
+
     }
 
     private fun getMovies() {
@@ -60,7 +63,7 @@ class DiscoverFragment : Fragment() {
                     val gson = Gson()
                     val reader = JsonReader(StringReader(s))
                     reader.isLenient = true
-                    val dr = gson.fromJson<DiscoverResults>(s, DiscoverResults::class.java)
+                    val dr = gson.fromJson<DiscoverResults>(reader, DiscoverResults::class.java)
                     dataSet.clear()
                     dataSet.addAll(dr.results)
                     this.adatper.notifyDataSetChanged()
@@ -81,7 +84,6 @@ class DiscoverFragment : Fragment() {
                 this.recyclerView.adapter = adatper
                 this.recyclerView.layoutManager = LinearLayoutManager(it)
                 this.loading = v.findViewById(R.id.loading)
-                getMovies()
             }
         }
     }

@@ -19,5 +19,12 @@ class Home : AppCompatActivity() {
         val fragAdapter = HomePagerAdapter(supportFragmentManager, this)
         viewPager.adapter = fragAdapter
         tabLayout.setupWithViewPager(viewPager)
+        setupTabLayout()
+    }
+
+    private fun setupTabLayout() {
+        tabLayout.getTabAt(0)?.setIcon(R.drawable.ic_movies)
+        tabLayout.getTabAt(1)?.setIcon(R.drawable.ic_fav)
+        tabLayout.getTabAt(2)?.setIcon(R.drawable.ic_settings)
     }
 }

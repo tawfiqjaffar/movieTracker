@@ -27,7 +27,7 @@ class DisplayImage(private val imageView: ImageView) : AsyncTask<String, Void, B
     }
 
     fun getImagePath(posterPath: String): String {
-        return ("https://image.tmdb.org/t/p/original${posterPath}")
+        return ("https://image.tmdb.org/t/p/w500${posterPath}")
     }
 
 }
