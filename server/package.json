@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint \"**/*.js\" --ignore-pattern node_modules/",
-    "dev": "nodemon src/app.js --exec 'npm run lint && node'"
+    "devmac": "./devmac.sh",
+    "dev": "./dev.sh"
   },
   "author": "",
   "license": "ISC",
