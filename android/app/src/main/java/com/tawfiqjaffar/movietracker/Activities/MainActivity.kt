@@ -39,6 +39,8 @@ class MainActivity : AppCompatActivity() {
                 { s ->
                     loading.visibility = View.GONE
                     Log.d(TAG, s)
+                    startActivity(Intent(this.context, Home::class.java))
+                    finish()
                 },
                 {
                     loading.visibility = View.GONE
