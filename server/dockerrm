@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# Stop all containers
+docker stop `docker ps -qa`
+
+# Remove all containers
+docker rm `docker ps -qa`
+
+# Remove all images
+docker rmi -f `docker images -qa `
+
+# Remove all volumes
+docker volume rm $(docker volume ls -q)
+
+# Remove all networks
+docker network rm `docker network ls -q`
+
+# Your installation should now be all fresh and clean.
+
+# The following commands should not output any items:
+echo Nothing?
+docker ps -a
+echo Nothing?
+docker images -a
+echo Nothing?
+docker volume ls
+
+echo Default?
+# The following command show only show the default networks:
+docker network ls

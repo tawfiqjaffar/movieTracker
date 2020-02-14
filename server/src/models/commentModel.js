@@ -1,5 +1,4 @@
 let mongoose = require('mongoose');
-
 let commentSchema = mongoose.Schema({
     movieId: {
         type: String,
