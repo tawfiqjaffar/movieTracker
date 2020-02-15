@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.tawfiqjaffar.movietracker.Fragments.DiscoverFragment
+import com.tawfiqjaffar.movietracker.Fragments.SettingsFragment
 
 class HomePagerAdapter(private val fragmentManager: FragmentManager, private val context: Context) :
     FragmentPagerAdapter(fragmentManager) {
@@ -13,16 +14,19 @@ class HomePagerAdapter(private val fragmentManager: FragmentManager, private val
     }
 
     override fun getItem(position: Int): Fragment {
-        return DiscoverFragment.newInstance()
+        return (when (position) {
+            0 -> DiscoverFragment.newInstance()
+            1 -> DiscoverFragment.newInstance()
+            else -> SettingsFragment.newInstance()
+        })
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return (
-                when (position) {
-                    0 -> "Discover"
-                    1 -> "Favorites"
-                    else -> "Settings"
-                })
+        return (when (position) {
+            0 -> "Discover"
+            1 -> "Favorites"
+            else -> "Settings"
+        })
     }
 
 }
