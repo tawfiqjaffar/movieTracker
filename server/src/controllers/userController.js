@@ -17,6 +17,21 @@ exports.index = (req, res) => {
     });
 };
 
+exports.findOne = (req, res) => {
+    User.findOne({_id: req.headers.id}, (err, found) => {
+        if (err) {
+            res.status(404).json(responseMaker({
+                msg: `could not find user ${req.headers.id}`
+            }, 404));
+        } else {
+            res.status(200).json(responseMaker({
+                msg: 'success',
+                user: {...found._doc}
+            }));
+        }
+    });
+};
+
 exports.new = async (req, res) => {
     var user = new User();
     const hashed = await hash.passwordToHash(req.headers.password);
@@ -26,7 +41,7 @@ exports.new = async (req, res) => {
     user.save((err) => {
         if (err) {
             console.error(err);
-            res.status(500).json(responseMaker({
+            res.status(409).json(responseMaker({
                 msg: 'error, could not create user'
             }, 500));
         } else {
@@ -42,12 +57,13 @@ exports.login = async (req, res) => {
     let user = User.findOne({
         username: req.headers.username
     }, async (err, found) => {
-        if (err) {
+        if (err || !found) {
             console.error(err);
             res.status(404).json(responseMaker({
                 msg: `error, could find user ${user.usernamee}`
             }, 404));
         } else {
+            console.log(found);
             let passwordMatch = await hash.hashToPassword(
                 req.headers.password, found.password);
             if (!passwordMatch) {

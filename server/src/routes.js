@@ -12,6 +12,9 @@ router.get('/info', (req, res) => {
 router.route('/users/all')
     .get(userController.index);
 
+router.route('/users/find')
+    .get(userController.findOne);
+
 router.route('/users/register')
     .post(userController.new);
 
