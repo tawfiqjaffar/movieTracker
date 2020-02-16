@@ -8,7 +8,11 @@ let commentSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    user: {
+    userId: {
+        type: String,
+        required: true
+    },
+    name: {
         type: String,
         required: true
     }

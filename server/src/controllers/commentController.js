@@ -19,8 +19,9 @@ exports.index = (req, res) => {
 exports.new = (req, res) => {
     let comment = new Comment();
     comment.content = req.headers.content;
-    comment.user = req.headers.user;
+    comment.userId = req.headers.id;
     comment.movieId = req.headers.movieid;
+    comment.name = req.headers.name;
 
     comment.save((err) => {
         if (err) {
@@ -35,4 +36,23 @@ exports.new = (req, res) => {
             }));
         }
     });
+};
+
+exports.findByMovie = (req, res) => {
+    Comment.find(
+        {movieId: req.headers.movieid},
+        (err, found) => {
+            if (err || !found) {
+                res.status(404).json(responseMaker({
+                    msg: 'error, could not create comment',
+                    error: err
+                }, 404));
+            } else {
+                res.status(200).json(responseMaker({
+                    msg: 'success',
+                    data: [...found]
+                }));
+            }
+        }
+    );
 };

@@ -30,4 +30,7 @@ router.route('/comments/all')
 router.route('/comments/new')
     .post(commentController.new);
 
+router.route('/comments/find')
+    .get(commentController.findByMovie);
+
 module.exports = router;
