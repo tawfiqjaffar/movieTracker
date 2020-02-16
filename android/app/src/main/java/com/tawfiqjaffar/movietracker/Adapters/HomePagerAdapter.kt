@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.tawfiqjaffar.movietracker.Fragments.DiscoverFragment
+import com.tawfiqjaffar.movietracker.Fragments.FavoritesFragment
 import com.tawfiqjaffar.movietracker.Fragments.SettingsFragment
 
 class HomePagerAdapter(private val fragmentManager: FragmentManager, private val context: Context) :
@@ -16,7 +17,7 @@ class HomePagerAdapter(private val fragmentManager: FragmentManager, private val
     override fun getItem(position: Int): Fragment {
         return (when (position) {
             0 -> DiscoverFragment.newInstance()
-            1 -> DiscoverFragment.newInstance()
+            1 -> FavoritesFragment.newInstance()
             else -> SettingsFragment.newInstance()
         })
     }

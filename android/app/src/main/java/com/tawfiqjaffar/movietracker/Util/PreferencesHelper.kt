@@ -2,6 +2,7 @@ package com.tawfiqjaffar.movietracker.Util
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 
 class PreferencesHelper(private val context: Context) {
     private val TAG = "MovieApp"
@@ -29,6 +30,18 @@ class PreferencesHelper(private val context: Context) {
 
     fun getPassword() : String? {
         return (this.sharedPreferences.getString("${TAG}_PASSWORD", ""))
+    }
+
+    fun setId(id: String) {
+        Log.d("TJ_SharedPref", id)
+        with (this.sharedPreferences.edit()) {
+            putString("${TAG}_ID", id)
+            commit()
+        }
+    }
+
+    fun getId() : String? {
+        return (this.sharedPreferences.getString("${TAG}_ID", ""))
     }
 
     fun setIP(ip: String) {

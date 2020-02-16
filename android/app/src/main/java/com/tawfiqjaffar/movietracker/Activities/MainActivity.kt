@@ -2,7 +2,6 @@ package com.tawfiqjaffar.movietracker.Activities
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +9,8 @@ import android.view.View
 import android.widget.RelativeLayout
 import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
+import com.google.gson.Gson
+import com.tawfiqjaffar.movietracker.Models.LoginResponse
 import com.tawfiqjaffar.movietracker.R
 import com.tawfiqjaffar.movietracker.Util.Api
 import com.tawfiqjaffar.movietracker.Util.PreferencesHelper
@@ -38,11 +39,6 @@ class MainActivity : AppCompatActivity() {
                 Log.d(TAG, pass)
 
                 if (user.isNotEmpty() && pass.isNotEmpty()) {
-                    remember.isChecked = true
-                    username.isEnabled = false
-                    username.isFocusable = false
-                    password.isEnabled = false
-                    password.isFocusable = false
                     loginUser(user, pass)
                 }
             }
@@ -61,17 +57,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun loginUser(username: String, password: String) {
+    private fun loginUser(user : String, pass: String) {
         loading.visibility = View.VISIBLE
 
         val api = Api("http://192.168.1.11:8080", this.context)
         api.postRequest(
             "/api/users/login",
             { s ->
+                val userObject = Gson().fromJson<LoginResponse>(s, LoginResponse::class.java)
+                Log.d(TAG, userObject.data.user.id)
                 loading.visibility = View.GONE
-                preferencesHelper.setUser(username)
+                preferencesHelper.setUser(user)
+                preferencesHelper.setId(userObject.data.user.id)
                 if (remember.isChecked){
-                    preferencesHelper.setPassword(password)
+                    preferencesHelper.setPassword(pass)
+                    Log.d(TAG, preferencesHelper.getId())
                 }
                 Log.d(TAG, s)
                 startActivity(Intent(this.context, Home::class.java))
@@ -83,8 +83,8 @@ class MainActivity : AppCompatActivity() {
                 Log.e(TAG, "Something went wrong")
             },
             hashMapOf(
-                Pair("username", username),
-                Pair("password", password)
+                Pair("username", user),
+                Pair("password", pass)
             )
         )
     }
