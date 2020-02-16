@@ -40,6 +40,7 @@ class SettingsFragment : Fragment() {
                 this.disconnect.setOnClickListener {
                     preferencesHelper.setUser("")
                     preferencesHelper.setPassword("")
+                    preferencesHelper.setId("")
                     activity.startActivity(Intent(context, MainActivity::class.java))
                     activity.finish()
                 }

@@ -43,4 +43,23 @@ class Api(private val baseUrl: String, private val context: Context) {
         }
         queue.add(stringRequest)
     }
+
+    fun putRequest(
+        route: String,
+        callback: (String) -> (Unit),
+        errorCallback: (Int) -> (Unit),
+        headers: HashMap<String, String> = hashMapOf()
+    ) {
+        val url = "${baseUrl}${route}"
+        val queue = Volley.newRequestQueue(this.context)
+        val stringRequest = object : StringRequest(Method.PUT, url,
+            Response.Listener<String> { response -> callback(response) },
+            Response.ErrorListener { error -> errorCallback(error.networkResponse.statusCode) }
+        ) {
+            override fun getHeaders(): MutableMap<String, String> {
+                return headers
+            }
+        }
+        queue.add(stringRequest)
+    }
 }

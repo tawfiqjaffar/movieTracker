@@ -1,6 +1,7 @@
 package com.tawfiqjaffar.movietracker.Adapters
 
 import android.content.Context
+import android.content.Intent
 import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.tawfiqjaffar.movietracker.Activities.FullMovie
 import com.tawfiqjaffar.movietracker.Models.Movie
 import com.tawfiqjaffar.movietracker.R
 import com.tawfiqjaffar.movietracker.Util.DisplayImage
@@ -33,6 +35,11 @@ class DiscoverAdapter(private val dataSet: List<Movie>, private val context: Con
         di.execute(di.getImagePath(item.posterPath))
         holder.title.text = item.title
         holder.description.text = item.overview
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, FullMovie::class.java)
+            intent.putExtra("movie", item)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount() = this.dataSet.size

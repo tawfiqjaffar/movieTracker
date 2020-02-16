@@ -2,16 +2,20 @@ package com.tawfiqjaffar.movietracker.Activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.tawfiqjaffar.movietracker.Adapters.HomePagerAdapter
 import com.tawfiqjaffar.movietracker.R
+import com.tawfiqjaffar.movietracker.Util.PreferencesHelper
 import kotlinx.android.synthetic.main.activity_home.*
 
 class Home : AppCompatActivity() {
 
+    private val TAG = "TJ_Home"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+        Log.d(TAG, PreferencesHelper(this).getId())
         setupViews()
     }
 

@@ -5,6 +5,7 @@
     android:background="@color/Gray"
     android:layout_width="match_parent"
     android:elevation="3dp"
+    android:foreground="?attr/selectableItemBackgroundBorderless"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     android:layout_marginTop="5dp"
