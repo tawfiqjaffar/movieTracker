@@ -45,7 +45,7 @@ class FullMovie : AppCompatActivity() {
 
     private fun getComments() {
         this.loading.visibility = View.VISIBLE
-        val api = Api("http://192.168.1.11:8080", this.context)
+        val api = Api("http://10.41.165.65:8080", this.context)
         api.getRequest("/api/comments/find", { s ->
             val response = Gson().fromJson<CommentResponse>(s, CommentResponse::class.java)
             this.dataSet.clear()
@@ -102,7 +102,7 @@ class FullMovie : AppCompatActivity() {
 
 
                 this.loading.visibility = View.VISIBLE
-                val api = Api("http://192.168.1.11:8080", this.context)
+                val api = Api("http://10.41.165.65:8080", this.context)
                 api.postRequest("/api/comments/new", { s ->
                     this.loading.visibility = View.GONE
                     getComments()
@@ -124,7 +124,7 @@ class FullMovie : AppCompatActivity() {
     private fun addRemoveFavorite(changeIcon: (String) -> Unit) {
         loading.visibility = View.VISIBLE
         prefHelp.getId()?.let {
-            val api = Api("http://192.168.1.11:8080", context)
+            val api = Api("http://10.41.165.65:8080", context)
             api.putRequest("/api/users/favorite",
                 { s ->
                     val resp = Gson().fromJson<FavResponse>(s, FavResponse::class.java)

@@ -42,7 +42,7 @@ class CreateAccount : AppCompatActivity() {
 
     private fun createAccount(username: String, password: String) {
         loading.visibility = View.VISIBLE
-        val api = Api("http://192.168.1.11:8080", this.context)
+        val api = Api("http://10.41.165.65:8080", this.context)
         api.postRequest(
             "/api/users/register",
             { s ->
