@@ -13,9 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activities.FullMovie"
+        <activity android:name=".Activities.Server"></activity>
+        <activity
+            android:name=".Activities.FullMovie"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Activities.Home"
             android:screenOrientation="portrait"

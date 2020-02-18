@@ -46,6 +46,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupViews() {
+        this.serverConfig.setOnClickListener {
+            startActivity(Intent(context, Server::class.java))
+        }
         createAccount.setOnClickListener {
             startActivity(Intent(this.context, CreateAccount::class.java))
         }
@@ -60,7 +63,7 @@ class MainActivity : AppCompatActivity() {
     private fun loginUser(user : String, pass: String) {
         loading.visibility = View.VISIBLE
 
-        val api = Api("http://10.41.165.65:8080", this.context)
+        val api = Api(PreferencesHelper(this.context).getIP()!!, this.context)
         api.postRequest(
             "/api/users/login",
             { s ->

@@ -63,7 +63,7 @@ class FavoritesFragment : Fragment() {
             val id = PreferencesHelper(context).getId()
 
             id?.let { id ->
-                val api = Api("http://10.41.165.65:8080", context)
+                val api = Api(PreferencesHelper(context).getIP()!!, context)
                 api.getRequest("/api/users/find",
                     { s ->
                         val resp = Gson().fromJson<LoginResponse>(s, LoginResponse::class.java)

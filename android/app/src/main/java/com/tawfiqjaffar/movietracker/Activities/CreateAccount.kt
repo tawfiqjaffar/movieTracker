@@ -9,6 +9,7 @@ import android.widget.RelativeLayout
 import android.widget.Toast
 import com.tawfiqjaffar.movietracker.R
 import com.tawfiqjaffar.movietracker.Util.Api
+import com.tawfiqjaffar.movietracker.Util.PreferencesHelper
 import kotlinx.android.synthetic.main.activity_create_account.*
 
 class CreateAccount : AppCompatActivity() {
@@ -42,7 +43,7 @@ class CreateAccount : AppCompatActivity() {
 
     private fun createAccount(username: String, password: String) {
         loading.visibility = View.VISIBLE
-        val api = Api("http://10.41.165.65:8080", this.context)
+        val api = Api(PreferencesHelper(this.context).getIP()!!, this.context)
         api.postRequest(
             "/api/users/register",
             { s ->

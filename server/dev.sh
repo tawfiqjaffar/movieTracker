@@ -3,6 +3,7 @@
 # This is script to launch the server in development mode.
 
 # Launch docker daemon if it isn't running
+
 systemctl is-active docker > /dev/null
 
 if [[ $? -ne 0 ]]; then
