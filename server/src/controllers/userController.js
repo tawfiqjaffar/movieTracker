@@ -18,7 +18,7 @@ exports.index = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-    User.findOne({_id: req.headers.id}, (err, found) => {
+    User.findOne({ _id: req.headers.id }, (err, found) => {
         if (err) {
             res.status(404).json(responseMaker({
                 msg: `could not find user ${req.headers.id}`
@@ -26,7 +26,7 @@ exports.findOne = (req, res) => {
         } else {
             res.status(200).json(responseMaker({
                 msg: 'success',
-                user: {...found._doc}
+                user: { ...found._doc }
             }));
         }
     });
@@ -81,38 +81,41 @@ exports.login = async (req, res) => {
 };
 
 exports.favUnfav = (req, res) => {
-    User.findById(req.headers.id, (err, found) => {
-        if (err) {
-            console.error(err);
-            res.status(404).json(responseMaker({
-                msg: `error, could find user ${req.headers.id}`
-            }, 404));
-        } else {
-            let favList = found.favorites;
-            let movieId = req.headers.movieid;
-            let action = 'favorited';
-            let index = favList.indexOf(movieId);
-            if (index !== -1) {
-                action = 'unfavorited';
-                favList.splice(index, 1);
+    User.findOne(
+        { _id: req.headers.id },
+        (err, found) => {
+            if (err) {
+                console.error(err);
+                res.status(404).json(responseMaker({
+                    msg: `error, could find user ${req.headers.id}`
+                }, 404));
             } else {
-                favList.push(movieId);
-            }
-            found.favorites = favList;
-            found.save((err) => {
-                if (err) {
-                    res.status(500).json(responseMaker({
-                        msg: 'error',
-                        error: err
-                    }, 500));
+                let favList = found.favorites;
+                let movieId = req.headers.movieid;
+                let action = 'favorited';
+                let index = favList.indexOf(movieId);
+                if (index !== -1) {
+                    action = 'unfavorited';
+                    favList.splice(index, 1);
                 } else {
-                    res.status(200).json(responseMaker({
-                        msg:
-                            `success, movie ${movieId} has been ${action} for user ${req.headers.id}`,
-                        user: found
-                    }));
+                    favList.push(movieId);
                 }
-            });
-        }
-    });
+                found.favorites = favList;
+                found.save((err) => {
+                    if (err) {
+                        res.status(500).json(responseMaker({
+                            msg: 'error',
+                            error: err
+                        }, 500));
+                    } else {
+                        res.status(200).json(responseMaker({
+                            msg:
+                                `success, movie ${movieId} has been ${action} for user ${req.headers.id}`,
+                            action: action,
+                            user: found
+                        }));
+                    }
+                });
+            }
+        });
 };
