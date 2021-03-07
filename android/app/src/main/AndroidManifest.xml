@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.tawfiqjaffar.movietracker">
+    package="com.yassine.movietracker">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -14,21 +14,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activities.Server"></activity>
+        <activity android:name="com.yassine.movietracker.Activities.Server"></activity>
         <activity
-            android:name=".Activities.FullMovie"
+            android:name="com.yassine.movietracker.Activities.FullMovie"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Activities.Home"
+            android:name="com.yassine.movietracker.Activities.Home"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Activities.CreateAccount"
+            android:name="com.yassine.movietracker.Activities.CreateAccount"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".Activities.MainActivity"
+            android:name="com.yassine.movietracker.Activities.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>

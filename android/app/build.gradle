@@ -8,7 +8,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
     defaultConfig {
-        applicationId "com.tawfiqjaffar.movietracker"
+        applicationId "com.yassine.movietracker"
         minSdkVersion 15
         targetSdkVersion 29
         versionCode 1
