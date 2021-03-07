@@ -52,7 +52,8 @@ class PreferencesHelper(private val context: Context) {
     }
 
     fun getIP(): String? {
-        return (this.sharedPreferences.getString("MEDIKIT_IP", "10.41.165.65"))
+        return "http://10.0.2.2:8080"
+//        return (this.sharedPreferences.getString("MEDIKIT_IP", "10.41.165.65"))
     }
 
     fun setPort(port: Int) {

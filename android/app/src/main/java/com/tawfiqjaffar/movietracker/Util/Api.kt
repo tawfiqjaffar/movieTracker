@@ -1,6 +1,7 @@
 package com.tawfiqjaffar.movietracker.Util
 
 import android.content.Context
+import android.util.Log
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -15,7 +16,8 @@ class Api(private val baseUrl: String, private val context: Context) {
         val url = "${baseUrl}${route}"
         val queue = Volley.newRequestQueue(this.context)
         val stringRequest = object : StringRequest(Method.GET, url,
-            Response.Listener<String> { response -> callback(response) },
+            Response.Listener<String> { response ->
+                callback(response) },
             Response.ErrorListener { errorCallback() }
         ) {
             override fun getHeaders(): MutableMap<String, String> {
@@ -34,8 +36,12 @@ class Api(private val baseUrl: String, private val context: Context) {
         val url = "${baseUrl}${route}"
         val queue = Volley.newRequestQueue(this.context)
         val stringRequest = object : StringRequest(Method.POST, url,
-            Response.Listener<String> { response -> callback(response) },
-            Response.ErrorListener { error -> errorCallback(error.networkResponse.statusCode) }
+            Response.Listener<String> { response ->
+                callback(response)
+            },
+            Response.ErrorListener { error ->
+                Log.d("API", error.toString())
+            }
         ) {
             override fun getHeaders(): MutableMap<String, String> {
                 return headers
@@ -54,7 +60,7 @@ class Api(private val baseUrl: String, private val context: Context) {
         val queue = Volley.newRequestQueue(this.context)
         val stringRequest = object : StringRequest(Method.PUT, url,
             Response.Listener<String> { response -> callback(response) },
-            Response.ErrorListener { error -> errorCallback(error.networkResponse.statusCode) }
+            Response.ErrorListener { error ->  }
         ) {
             override fun getHeaders(): MutableMap<String, String> {
                 return headers
